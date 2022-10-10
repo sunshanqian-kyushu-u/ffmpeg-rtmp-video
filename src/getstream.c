@@ -53,11 +53,6 @@ void getstream(unsigned char *mem) {
         goto fail_find_videostream;
     }else {
         printf("Find video stream succeed!\r\n");
-        if(ifmt_ctx->streams[video_idx]->codecpar->width != RESOLUTION_X || 
-                ifmt_ctx->streams[video_idx]->codecpar->height != RESOLUTION_Y) {
-            printf("Error: Bad resolution!\r\n");
-        }
-        printf("Correct resolution!\r\n");
     }
 
     /* set h264 decoder */
@@ -113,8 +108,8 @@ void getstream(unsigned char *mem) {
     }
     printf("Allocate rgb frame succeed!\r\n");
     /* set the info for sws_getContext() and av_frame_get_buffer() */
-    rgbframe->height = ifmt_ctx->streams[video_idx]->codecpar->height;
-    rgbframe->width = ifmt_ctx->streams[video_idx]->codecpar->width;
+    rgbframe->height = RESOLUTION_Y;
+    rgbframe->width = RESOLUTION_X;
     rgbframe->format = AV_PIX_FMT_RGB32;
     /* av_frame_get_buffer() is nessary or goes "bad dst image pointers" */
     if (av_frame_get_buffer(rgbframe, 0) < 0) {
@@ -130,6 +125,8 @@ void getstream(unsigned char *mem) {
 
     int ret;
     loop_state_flag = LOOP_RUN;
+
+    printf("Start play!\r\n");
 
     while (loop_state_flag == LOOP_RUN) {
         if(av_read_frame(ifmt_ctx, packet) < 0) {
