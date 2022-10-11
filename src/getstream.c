@@ -30,7 +30,7 @@ void getstream(unsigned char *mem) {
     /* open stream and get head info */
     AVFormatContext *ifmt_ctx = NULL;
     if (avformat_open_input(&ifmt_ctx, RTMP_ADDR, NULL, NULL) < 0) {
-        printf("Error: Connect to the server failed!\r\n");
+        printf("Error: Connect to the server failed!Please check the url!\r\n");
         goto fail_open_stream;
     }
     printf("Connect to the server succeed!\r\n");
@@ -95,7 +95,7 @@ void getstream(unsigned char *mem) {
     /* set the info for sws_getContext() init */
     frame->height = ifmt_ctx->streams[video_idx]->codecpar->height;
     frame->width = ifmt_ctx->streams[video_idx]->codecpar->width;
-    frame->format = AV_PIX_FMT_YUV420P;
+    frame->format = ifmt_ctx->streams[video_idx]->codecpar->format;
 
     int i;
 
