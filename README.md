@@ -10,3 +10,5 @@
 项目结构很简单，源文件放在了 src 目录下，main.c 包括屏幕的初始化等，getstream.c 负责处理数据并显示；include 和 lib 是上面提到的 ffmpeg 库，build 用来存放生成的可执行文件。
 
 make 能得到可执行文件，程序依赖 lib 文件夹中的内容，我将其放在了 /usr/ffmpeg/lib 路径下，并在命令行输入 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/ffmpeg/lib，更好的方法是修改 /etc 下的配置文件，但是我是使用了 busybox 生成的系统，这个功能不完善，所以用 export 命令替代，在重启系统后需要重新输入。
+
+另外，程序可以将输入的图像变换为 $800\times{480}$ 分辨率，但是由于算力不足，会影响帧率，如输入的流的分辨率为 $1K$，会明显感觉到卡顿，建议将输入流直接限制为 $800\times{480}$ 分辨率。
