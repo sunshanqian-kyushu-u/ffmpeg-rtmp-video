@@ -25,7 +25,7 @@ void signal_handler(int sig) {
     }
 }
 
-void getstream(unsigned char *mem) {
+void receive_rtmp(unsigned char *mem) {
 
     /* open stream and get head info */
     AVFormatContext *ifmt_ctx = NULL;

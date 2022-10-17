@@ -52,7 +52,7 @@ int main()
     }
 
     signal(SIGINT, signal_handler);
-    getstream(mem);
+    receive_rtmp(mem);
 
 fail_map_mem:
     munmap (mem, screensize); /* unmap */
