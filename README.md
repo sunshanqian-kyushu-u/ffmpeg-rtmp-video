@@ -1,4 +1,4 @@
-# ffmpeg_rtmp
+# ffmpeg_rtmp_video
 这个项目的目标是从服务器拉取 rtmp 流并显示到野火 imx6ull 开发板上（正点原子开发板应该也可以用）。
 # 准备工作
 使用的是 ffmpeg 库，版本是 4.3.2。库的编译不多赘述，可参考下面的链接，需要注意的是其中的编译器参数需要改成交叉编译器的名字，如 arm-linux-gnueabihf-gcc。
